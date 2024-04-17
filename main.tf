@@ -9,6 +9,7 @@ terraform {
 provider "azurerm" {
   features {}
   use_oidc = true
+  skip_provider_registration = true
 }
 
 # Define any Azure resources to be created here. A simple resource group is shown here as a minimal example.
