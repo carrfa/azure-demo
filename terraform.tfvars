@@ -1,4 +1,4 @@
-# ID 123
+# ID 12
 location        = "westeurope"
 resource_group_name = "tf-example-rg"
 vm_name          = "tf-example-vm"
