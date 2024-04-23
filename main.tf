@@ -12,8 +12,8 @@ resource "azurerm_resource_group" "rg-aks-1" {
 }
 resource "azurerm_linux_virtual_machine" "bad_linux_example" {
   name                            = "bad-linux-machine"
-  resource_group_name             = azurerm_resource_group.example.name
-  location                        = azurerm_resource_group.example.location
+  resource_group_name             = azurerm_resource_group.rg-aks-2.name
+  location                        = azurerm_resource_group.rg-aks-2.location
   size                            = "Standard_F2"
   admin_username                  = "adminuser"
   admin_password                  = "somePassword"
