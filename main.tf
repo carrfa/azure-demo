@@ -1,7 +1,7 @@
 provider "azurerm" {
   features {}
 }
-
+/*
 resource "azurerm_resource_group" "rg" {
   name     = "tf-example-rg"
   location = "westeurope"
@@ -83,3 +83,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 }
+*/
