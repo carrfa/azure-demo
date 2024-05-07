@@ -11,7 +11,7 @@ module "terraform-azurerm-virtual-machine" {
   image_os            = "linux"
   location            = azurerm_resource_group.rg.location
   name                = "tf-fca-vm-module"
-  os_disk {
+  os_disk = {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
