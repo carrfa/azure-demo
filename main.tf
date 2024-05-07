@@ -1,7 +1,24 @@
 provider "azurerm" {
   features {}
 }
-/*
+
+module "terraform-azurerm-virtual-machine" {
+  source  = "spacelift.io/carrfa/terraform-azurerm-virtual-machine/default"
+  version = "0.1.0"
+
+  # Required inputs 
+  image_os            = "linux"
+  location            = azurerm_resource_group.rg.location
+  name                = "tf-fca-vm-module"
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+  resource_group_name = azurerm_resource_group.rg.name
+  size                = "Standard_B1s"
+  subnet_id           = # string
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "tf-example-rg"
   location = "westeurope"
@@ -61,6 +78,7 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
+/*
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = "tf-example-vm"
   resource_group_name = azurerm_resource_group.rg.name
