@@ -11,11 +11,12 @@ module "terraform-azurerm-virtual-machine" {
   image_os            = "linux"
   location            = azurerm_resource_group.rg.location
   name                = "tf-fca-vm-module"
+  os_simple = "UbuntuServer"
   os_disk = {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-  resource_group_name = azurerm_resource_group.rg.name
+resource_group_name = azurerm_resource_group.rg.name
   size                = "Standard_B1s"
   subnet_id           = azurerm_subnet.subnet.id
 }
