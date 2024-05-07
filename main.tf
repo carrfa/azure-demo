@@ -17,36 +17,36 @@ module "terraform-azurerm-virtual-machine" {
   }
   resource_group_name = azurerm_resource_group.rg.name
   size                = "Standard_B1s"
-  subnet_id           = # string
+  subnet_id           = azurerm_subnet.subnet.id
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "tf-example-rg"
+  name     = "tf-fca-rg"
   location = "westeurope"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "tf-example-vnet"
+  name                = "tf-fca-vnet"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   address_space       = ["10.0.0.0/16"]
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "tf-example-subnet"
+  name                 = "tf-fca-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  name                = "tf-example-nsg"
+  name                = "tf-fca-nsg"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 }
 
 resource "azurerm_network_security_rule" "rule" {
-  name                        = "tf-example-rule"
+  name                        = "tf-fca-rule"
   resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg.name
   priority                    = 100
@@ -60,14 +60,14 @@ resource "azurerm_network_security_rule" "rule" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  name                = "tf-example-pip"
+  name                = "tf-fca-pip"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "tf-example-nic"
+  name                = "tf-fca-nic"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
@@ -81,7 +81,7 @@ resource "azurerm_network_interface" "nic" {
 
 /*
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "tf-example-vm"
+  name                = "tf-fca-vm"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
